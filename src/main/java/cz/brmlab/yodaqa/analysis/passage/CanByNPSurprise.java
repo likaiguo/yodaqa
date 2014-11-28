@@ -91,6 +91,8 @@ public class CanByNPSurprise extends JCasAnnotator_ImplBase {
 				} else if (qlm.getBegin() >= np.getEnd()) {
 					distance = qlm.getBegin() - np.getEnd() - 1;
 				}
+				if (distance > 5) // ignore distant occurences
+					continue;
 				fv.setFeature(AF_TyCorPassageDist.class, Math.exp(-distance));
 				fv.setFeature(AF_TyCorPassageSp.class, Math.exp(qlm.getBaseLAT().getSpecificity()) * Math.exp(-distance));
 				logger.debug("Passage TyCor (d {}, contains {})", distance, qlm.getBaseLAT().getText());
