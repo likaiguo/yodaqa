@@ -191,12 +191,12 @@
       </typeDescription>
       <typeDescription>
         <name>cz.brmlab.yodaqa.model.CandidateAnswer.AF_TyCorPassageDist</name>
-        <description>Answer Feature: Nearby match of a question LAT within the answer-bearing passage; this value carries exp-inverse-distance in characters between the LAT word and the answer segment, with 1 being that the LAT is one of the answer words or just nearby.</description>
+        <description>Answer Feature: Nearby match of a question LAT within the answer-bearing passage; this value carries exp-inverse-distance in characters between the LAT word and the answer segment, with 1 being that the LAT is one of the answer words or just nearby. The value is weighed by the question LAT specificity.</description>
         <supertypeName>cz.brmlab.yodaqa.model.CandidateAnswer.AnswerFeature</supertypeName>
       </typeDescription>
       <typeDescription>
         <name>cz.brmlab.yodaqa.model.CandidateAnswer.AF_TyCorPassageInside</name>
-        <description>Answer Feature: Nearby match of a question LAT within the answer-bearing passage; this value is 1.0 if the LAT word match is actually within the answer.</description>
+        <description>Answer Feature: Nearby match of a question LAT within the answer-bearing passage; this value is 1.0 if the LAT word match is actually within the answer. The value is weighed by the question LAT specificity.</description>
         <supertypeName>cz.brmlab.yodaqa.model.CandidateAnswer.AnswerFeature</supertypeName>
       </typeDescription>
       <typeDescription>

@@ -83,16 +83,17 @@ public class CanByNPSurprise extends JCasAnnotator_ImplBase {
 			}
 			for (QuestionLATMatch qlm : JCasUtil.selectCovered(QuestionLATMatch.class, p)) {
 				double distance = 1000;
+				double specificity = Math.exp(qlm.getBaseLAT().getSpecificity());
 				if (qlm.getBegin() >= np.getBegin() && qlm.getEnd() <= np.getEnd()) {
 					distance = 0; // contained inside!
-					fv.setFeature(AF_TyCorPassageInside.class, 1.0);
+					fv.setFeature(AF_TyCorPassageInside.class, specificity * 1.0);
 				} else if (qlm.getEnd() <= np.getBegin()) {
 					distance = np.getBegin() - qlm.getEnd() - 1;
 				} else if (qlm.getBegin() >= np.getEnd()) {
 					distance = qlm.getBegin() - np.getEnd() - 1;
 				}
-				fv.setFeature(AF_TyCorPassageDist.class, Math.exp(-distance));
-				fv.setFeature(AF_TyCorPassageSp.class, Math.exp(qlm.getBaseLAT().getSpecificity()) * Math.exp(-distance));
+				fv.setFeature(AF_TyCorPassageDist.class, specificity * Math.exp(-distance));
+				// fv.setFeature(AF_TyCorPassageSp.class, specificity);
 				logger.debug("Passage TyCor (d {}, contains {})", distance, qlm.getBaseLAT().getText());
 				// this should be a singleton
 				break;

@@ -174,9 +174,10 @@ public class SolrDocPrimarySearch extends JCasMultiplier_ImplBase {
 			/* Okay, our answer contains a LAT.
 			 * Create the appropriate "passage TyCor"
 			 * features. */
-			fv.setFeature(AF_TyCorPassageInside.class, 1.0);
-			fv.setFeature(AF_TyCorPassageDist.class, 1.0);
-			fv.setFeature(AF_TyCorPassageSp.class, Math.exp(containedLAT.getSpecificity()));
+			double specificity = Math.exp(containedLAT.getSpecificity());
+			fv.setFeature(AF_TyCorPassageInside.class, specificity * 1.0);
+			fv.setFeature(AF_TyCorPassageDist.class, specificity * 1.0);
+			// fv.setFeature(AF_TyCorPassageSp.class, specificity);
 			logger.debug("Passage TyCor ('{}' contains '{}')", title, containedLAT.getText());
 		}
 
